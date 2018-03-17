@@ -1,0 +1,29 @@
+extends layout
+
+block content
+	#signup-emp
+		form.col-sm-offset-3.col-sm-6.form-horizontal(method="POST" action="/register/emp")
+			h2.text-center Create your employee account
+			p.text-center You must have a company key provided by your administrator in order to signup.
+			hr
+			.form-group
+				label.control-label.col-sm-4(for="key") Company Key *  :
+				.col-sm-6
+					input.form-control(name="key" ,type="text")
+			.form-group
+				label.control-label.col-sm-4(for="id") Employee ID *  :
+				.col-sm-6
+					input.form-control(name="id" ,type="text")
+			.form-group
+				label.control-label.col-sm-4(for="name") Employee Name *  :
+				.col-sm-6
+					input.form-control(name="name" ,type="text")
+			.form-group
+				label.control-label.col-sm-4(for="name") Password *  :
+				.col-sm-6
+					input.form-control(name="password" ,type="password")
+			
+			hr
+			.form-group
+				.col-sm-offset-4.col-sm-10
+					button.btn.btn-default(type="submit") Signup

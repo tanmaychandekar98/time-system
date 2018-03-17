@@ -14,26 +14,36 @@ html
 						span.icon-bar
 						span.icon-bar
 						span.icon-bar
-					a.navbar-brand(href='/') Time Cards
+					a.navbar-brand(href='/' style="padding:8px;")
+						img(src='/images/time.svg' style="height:100%;")
+					a.navbar-brand Time Cards
 				#navbar.collapse.navbar-collapse
-					ul.nav.navbar-nav
-						li
-							a(href='/userlist') View Users
 					ul.nav.navbar-nav.navbar-right
 						if user
-							li
-								a(href='/user/'+user._id) #{user.name}
+							if user.admin=="admin"
+								li
+									a(href='/admin') #{user.name}
+							else
+								li
+									a(href='/emp') #{user.name}
 							li
 								a(href='/logout') Logout
 						else
 							li.dropdown
-								a.dropdown-toggle(data-toggle="dropdown" href="#") Register
+								a.dropdown-toggle(data-toggle="dropdown" href="#") Sign-up
 									span.caret
 								ul.dropdown-menu
 									li
-										a(href='/register/company') Company
+										a(href='/signup/admin') Company
 									li
-										a(href='/register/employee') Employee
+										a(href='/signup/emp') Employee
+							li
+								a(href='/login') Sign-in
+							li
+								a(href='/contact') Contact us
+							li
+								a(href='/docs') Docs
+		
 		block content
 
 		script(type="text/javascript" src='/dist/jquery.min.js')

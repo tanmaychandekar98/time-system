@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	#login
+		.container
+			.col-sm-offset-4.col-sm-4
+				h3.col-sm-offset-4 Login
+				hr
+				form.form-horizontal(method="POST" action="/login")
+					.form-group
+						label.control-label.col-sm-4(for="username") ID:
+						.col-sm-6
+							input.form-control(name="username" ,type="text")
+					.form-group
+						label.control-label.col-sm-4(for="password") Password:
+						.col-sm-6
+							input.form-control(name="password" ,type="password")
+
+					hr
+					br
+
+					input.btn.btn-default.col-sm-offset-4(type="submit" value="Login")

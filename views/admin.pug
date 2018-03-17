@@ -1,0 +1,21 @@
+extends layout
+
+block content
+	#admin-page
+		.container
+			if user
+				if user.admin=="admin"
+					.row
+						h2 #{user.company}
+						p Welcome to the admin control panel
+						h4 Admin name : #{user.name}
+						h4 Admin ID : #{user.eid}
+					.row
+						hr.col-sm-8
+					.row
+						h3 Your organization key : #{user._id}
+						p Distribute this key to your employees to give access to this organization
+					.row
+						hr.col-sm-8
+					.row
+
