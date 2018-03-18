@@ -6,4 +6,22 @@ block content
 		p Welcome to #{title}
 		.container
 			hr
-			a.button.btn.btn-default(href='/signup/admin') Get Started
+			if !user
+				a.button.btn.btn-default(href='/signup/admin') Get Started as an admin
+				span -----
+				a.button.btn.btn-default(href='/signup/emp') Get Started as an employee*
+				br
+				br
+				p *company key needed to register as an employee
+			if user
+				h3 Welcome
+				if user.admin=="admin"
+					h3
+						a(href='/admin') #{user.company}
+				if user.admin!="admin"
+					h4 Click below to start your time
+					.row
+						.col-sm-6
+							h2 Punch in
+						.col-sm-6
+							h2 Punch out 

@@ -2,6 +2,7 @@ doctype html
 html
 	head
 		title= title
+		meta(name="viewport" content="width=device-width, initial-scale=1")
 		link(rel='stylesheet', href='/stylesheets/style.css')
 		link(rel='stylesheet', href='/dist/bootstrap.min.css')
 		link(rel = 'stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
@@ -16,18 +17,18 @@ html
 						span.icon-bar
 					a.navbar-brand(href='/' style="padding:8px;")
 						img(src='/images/time.svg' style="height:100%;")
-					a.navbar-brand Time Cards
+					a.navbar-brand(href='/') Time Cards
 				#navbar.collapse.navbar-collapse
 					ul.nav.navbar-nav.navbar-right
+						li
+							a(href='/') Home
 						if user
 							if user.admin=="admin"
 								li
 									a(href='/admin') #{user.name}
 							else
 								li
-									a(href='/emp') #{user.name}
-							li
-								a(href='/logout') Logout
+									a(href='/users/'+user._id) #{user.name}
 						else
 							li.dropdown
 								a.dropdown-toggle(data-toggle="dropdown" href="#") Sign-up
@@ -39,10 +40,13 @@ html
 										a(href='/signup/emp') Employee
 							li
 								a(href='/login') Sign-in
+						li
+							a(href='/contactus') Contact us
+						li
+							a(href='/docs') Docs
+						if user
 							li
-								a(href='/contact') Contact us
-							li
-								a(href='/docs') Docs
+								a(href='/logout') Logout
 		
 		block content
 

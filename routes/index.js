@@ -9,6 +9,14 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Time Cards Clock' });
 });
 
+router.get('/contactus', function(req, res, next) {
+  res.render('contact', { title: 'Contact Us' });
+});
+
+router.get('/docs', function(req, res, next) {
+  res.render('docs', { title: 'Documentation' });
+});
+
 //sign-up routes
 router.get('/signup/admin', function(req, res, next) {
   res.render('admin_signup', { title: 'Admin Signup' });
@@ -63,8 +71,8 @@ router.post('/register/emp', function(req,res){
 	User.findById(req.body.key,function(err,admin){
 		if (err) { res.send ("<h1>Invalid Key</h1>"); }
 		else if(!admin){
-			res.send("No such key exists");
-		}else{
+			res.send("<h1>Invalid Key</h1>");
+		}else if(admin.admin=="admin"){
 			//console.log(usr.name);
 			var user= new User();
 			user.name=req.body.name;
@@ -75,12 +83,15 @@ router.post('/register/emp', function(req,res){
 			user.save(function(err){
 				if (err) {
 					console.log(err);
-					res.send(err);
+					res.send("<h2>"+err.message+"<hr><a href='/signup/emp'>Go back</a></h2>");
 				}else{
 					//res.send("Registered 1 employee");
 					res.redirect('/emp');
 				}
 			});
+		}
+		else{
+			res.send("<h1>Invalid Key - 2</h1>");
 		}
 	});
 });

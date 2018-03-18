@@ -2,4 +2,13 @@ extends layout
 
 block content
 	#emp-page
-		h1 Employee
+		if emp
+			.container
+				h1 Employee
+				hr
+				.col-sm-3
+					h2 #{emp.name}
+					hr
+					h4 Company - #{emp.company}
+					if admin
+						h4 Admin - #{admin.name}

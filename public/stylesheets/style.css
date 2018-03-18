@@ -2,11 +2,11 @@ body {
 	padding-top: 70px;
 	background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/bg.jpg");
 	background-size: cover;
-	opacity: 0.8;
 }
 
 .navbar {
 	background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+	opacity:0.8;
 }
 
 * {
@@ -15,4 +15,18 @@ body {
 
 #home {
 	text-align: center;
+}
+
+.table-responsive {
+	height: 100%;
+}
+
+.find-emp * {
+	margin: 0px 10px;
+}
+
+.key {
+	border: white solid 1px;
+	padding: 3px;
+	opacity: 0.7;
 }

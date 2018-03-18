@@ -19,6 +19,9 @@ var userSchema = mongoose.Schema({
 	password:{
 		type:String
 	},
+	email:{
+		type:String
+	},
 	hiredate:{
 		type:Date
 	},

@@ -6,16 +6,57 @@ block content
 			if user
 				if user.admin=="admin"
 					.row
-						h2 #{user.company}
-						p Welcome to the admin control panel
-						h4 Admin name : #{user.name}
-						h4 Admin ID : #{user.eid}
+						.col-sm-4
+							h2 #{user.company}
+							p Welcome to the admin control panel
+							h4 Admin name : #{user.name}
+							h4 Admin ID : #{user.eid}
+						.col-sm-8
+							h3 Your organization key : 
+								span.key #{user._id}
+							p Distribute this key to your employees to give access to this organization
 					.row
 						hr.col-sm-8
-					.row
-						h3 Your organization key : #{user._id}
-						p Distribute this key to your employees to give access to this organization
-					.row
-						hr.col-sm-8
-					.row
-
+					br
+					br
+					if !list
+						.row
+							a.btn.btn-primary(href='/users/list/'+user._id) Show employees list
+					if list
+						.row
+							form.form-inline.find-emp(method='POST' action="/users/find_emp")
+								.form-group
+									label(for="eid") ID:
+									input.form-control(name="eid" ,type="text")
+								button.btn.btn-default(type="submit") View profile
+							br
+							br
+						hr
+						.row
+							table.table.col-sm-6.table-responsive
+								thead
+									tr
+										th.
+											Emp_ID*
+										th.
+											Name
+										th.
+											Job
+										th.
+											Hire Date
+										th.
+											Email
+								tbody
+									each emp in list
+										tr
+											td
+												a(href='/users/'+emp._id) #{emp.eid}
+											td.
+												#{emp.name}
+											td.
+												#{emp.job}
+											td.
+												#{emp.hiredate}
+											td.
+												#{emp.email}
+							p *Click on an employee id to view employee information
