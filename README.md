@@ -28,3 +28,9 @@ git checkout newfeature
 git rebase master
 git push origin newfeature
 ```
+
+
+To backup database data
+```
+mongodump --out /data/backup/ --db time-system
+```
