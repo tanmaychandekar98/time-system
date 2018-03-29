@@ -31,6 +31,14 @@ var userSchema = mongoose.Schema({
 	admin:{  //ObjectId for employee / 'admin' for admin
 		type:String,
 		required:true
+	},
+	in:{
+		type:Boolean,
+		required:true,
+		default:false
+	},
+	intime:{
+		type:String
 	}
 },{collection:'users'});
 

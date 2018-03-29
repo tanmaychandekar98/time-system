@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var User = require('../models/User');
+var Time = require('../models/Time');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -45,6 +46,50 @@ router.post('/find_emp', function(req,res){
 		});
 	}else
 		res.send("<h2>ID field is empty<hr><a href='/admin'>Go back</a></h2>")
+});
+
+router.post('/intime/:id', function(req,res){
+    User.findById(req.params.id , function(err,emp){
+        if(err){res.send(err);}
+        else{
+            var intime= new Time();
+            intime.eid = emp._id;
+            intime.intime = Date.now();
+            emp.in = true;
+            emp.intime = intime._id;
+            emp.save();
+            intime.save(function(err){
+                if(err){res.send(err);}
+                else {
+                    res.redirect('/users/'+emp._id);
+                }
+            });
+        }
+    });
+});
+
+router.post('/outtime/:id', function(req,res){
+    User.findById(req.params.id , function(err,emp){
+        if(err){res.send(err);}
+        else{
+            Time.findById(emp.intime , function(err,time){
+                if (err){res.send(err);}
+                else{
+                    time.outtime = Date.now();
+                    emp.in = false;
+                    emp.intime = null;
+                    emp.save();
+                    time.complete = true;
+                    time.save(function(err){
+                        if(err){res.send(err);}
+                        else{
+                            res.redirect('/users/'+emp._id);
+                        }
+                    });
+                }
+            });
+        }
+    });
 });
 
 module.exports = router;

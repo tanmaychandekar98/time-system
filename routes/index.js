@@ -35,13 +35,6 @@ router.get('/admin', function(req, res, next) {
   });
 });
 
-router.get('/emp', function(req, res, next) {
-  //res.send("Employee profile");
-  res.render('emp', {
-  	title:"Employee"
-  });
-});
-
 //Login route
 router.get('/login',function(req,res){
 	res.render('login',{title:"Login"});
@@ -86,7 +79,7 @@ router.post('/register/emp', function(req,res){
 					res.send("<h2>"+err.message+"<hr><a href='/signup/emp'>Go back</a></h2>");
 				}else{
 					//res.send("Registered 1 employee");
-					res.redirect('/emp');
+					res.redirect('/');
 				}
 			});
 		}

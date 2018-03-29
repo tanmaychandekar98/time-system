@@ -12,3 +12,18 @@ block content
 					h4 Company - #{emp.company}
 					if admin
 						h4 Admin - #{admin.name}
+		if user
+			hr
+			.container
+				if user.admin!='admin' && !user.in
+					form(method='POST' action='/users/intime/'+user._id)
+						.form-group
+							button.btn.btn-default(type='submit') In-Punch
+				if user.admin!='admin' && user.in
+					h5 You punched in
+					form(method='POST' action='/users/outtime/'+user._id)
+						.form-group
+							button.btn.btn-default(type='submit') Out-Punch
+			hr
+			.container
+				a.btn.btn-default(href='/users/payroll/'+user._id) Show payroll
