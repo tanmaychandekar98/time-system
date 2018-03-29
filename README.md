@@ -25,5 +25,6 @@ git checkout master
 git fetch upstream master
 git reset --hard FETCH_HEAD
 git checkout newfeature
-git push origin master
+git rebase master
+git push origin newfeature
 ```
