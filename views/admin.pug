@@ -55,8 +55,12 @@ block content
 												#{emp.name}
 											td.
 												#{emp.job}
-											td.
-												#{emp.hiredate}
+											if emp.hiredate
+												td.
+													#{emp.hiredate.toDateString()}
+											else
+												td.
+													-
 											td.
 												#{emp.email}
 							p *Click on an employee id to view employee information

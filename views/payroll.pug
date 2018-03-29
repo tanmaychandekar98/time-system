@@ -10,7 +10,7 @@ block content
                 if emp.intime
                     p Currently in work
             h3 Your working slots : 
-            p Current rate - 50 Rs. per hour
+            p Current rate - 100 Rs. per hour
             .row
                 .table-responsive
                     table.table.col-sm-6
@@ -18,6 +18,8 @@ block content
                             tr
                                 th.
                                     Sr. no.
+                                th.
+                                    Date
                                 th.
                                     In-time
                                 th.
@@ -27,23 +29,28 @@ block content
                                 th.
                                     Pay (Rs.)
                         tbody
+                            - var sum=0;
                             each time,i in times
                                 if time.complete
                                     -
-                                        var rate = 50/3600;
+                                        var rate = 100;
                                         var dur = (((time.outtime - time.intime)/1000)/3600).toFixed(4);
-                                        var pay = (dur*rate).toFixed(4);
+                                        var pay = (dur*rate).toFixed(2);
+                                        sum+=parseFloat(pay);
                                     tr
                                         td.
                                             #{i+1}
                                         td.
-                                            #{time.intime.getTime()/1000}
+                                            #{time.intime.toDateString()}
                                         td.
-                                            #{time.outtime.getTime()/1000}
+                                            #{time.intime.toLocaleTimeString()}
+                                        td.
+                                            #{time.outtime.toLocaleTimeString()}
                                         td.
                                             #{dur}
                                         td.
                                             #{pay}
+            h2 Total pay - Rs.  #{sum.toFixed(2)}
                                 
             
     
