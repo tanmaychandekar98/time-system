@@ -8,5 +8,5 @@ A realtime application for companies to track their employees' working hours.
 ```
       git remote add upstream https://github.com/tanmaychandekar98/time-system
       git fetch upstream/master
-      git rebase master
+      git reset --hard FETCH_HEAD
 ```
