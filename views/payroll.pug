@@ -1,56 +1,113 @@
 extends layout
 
 block content
-    if user
-        .container
-            .row
-                h2 #{emp.name}
-                h3 Job - #{emp.job}
-            .row
-                if emp.intime
-                    p Currently in work
-            h3 Your working slots : 
-            p Current rate - 100 Rs. per hour
-            .row
-                .table-responsive
-                    table.table.col-sm-6
-                        thead
-                            tr
-                                th.
-                                    Sr. no.
-                                th.
-                                    Date
-                                th.
-                                    In-time
-                                th.
-                                    Out-time
-                                th.
-                                    Duration(hrs)
-                                th.
-                                    Pay (Rs.)
-                        tbody
-                            - var sum=0;
-                            each time,i in times
-                                if time.complete
-                                    -
-                                        var rate = 100;
-                                        var dur = (((time.outtime - time.intime)/1000)/3600).toFixed(4);
-                                        var pay = (dur*rate).toFixed(2);
-                                        sum+=parseFloat(pay);
-                                    tr
-                                        td.
-                                            #{i+1}
-                                        td.
-                                            #{time.intime.toDateString()}
-                                        td.
-                                            #{time.intime.toLocaleTimeString()}
-                                        td.
-                                            #{time.outtime.toLocaleTimeString()}
-                                        td.
-                                            #{dur}
-                                        td.
-                                            #{pay}
-            h2 Total pay - Rs.  #{sum.toFixed(2)}
-                                
-            
-    
+	if user
+		-
+			var rate = 500;
+			var dayarray = new Array();
+			var arr = new Array();
+			var curr=times[0].intime.toDateString();
+			for(var i=0;i<times.length;i++){
+				if(times[i].complete){
+					var now = times[i].intime.toDateString();
+					if(curr==now){
+						arr.push(times[i]);
+					}
+					else{
+						curr = now;
+						dayarray.push(arr);
+						arr = new Array(times[i]);
+					}
+				}
+			}
+			dayarray.push(arr);
+		.container
+			.row
+				h2 #{emp.name}
+				h3 Job - #{emp.job}
+			.row
+				if emp.intime
+					p Currently in work
+			h3 Your working slots : 
+			p Current rate - #{rate} Rs. per hour
+			br
+			hr
+			br
+			.row
+				ul.nav.nav-tabs
+					li.active
+						a(data-toggle="tab" href="#detail") Detail record
+					li
+						a(data-toggle="tab" href="#daywise") Day wise
+				.tab-content
+					#detail.tab-pane.fade.in.active
+						.table-responsive
+							table.table.col-sm-6
+								thead
+									tr
+										th.
+											Sr. no.
+										th.
+											Date
+										th.
+											In-time
+										th.
+											Out-time
+										th.
+											Duration(hrs)
+										th.
+											Pay (Rs.)
+								tbody
+									- var sum=0;
+									each time,i in times
+										if time.complete
+											-
+												var dur = (((time.outtime - time.intime)/1000)/3600).toFixed(4);
+												var pay = (dur*rate).toFixed(2);
+												sum+=parseFloat(pay);
+											tr
+												td.
+													#{i+1}
+												td.
+													#{time.intime.toDateString()}
+												td.
+													#{time.intime.toLocaleTimeString()}
+												td.
+													#{time.outtime.toLocaleTimeString()}
+												td.
+													#{dur}
+												td.
+													#{pay}
+					#daywise.tab-pane.fade.in
+						.table-responsive
+							table.table.col-sm-6
+								thead
+									tr
+										th.
+											Date
+										th.
+											Duration(hrs)
+										th.
+											Day-Pay(Rs.)
+								tbody
+									each day in dayarray
+										-
+											var timeday=0,daypay=0;
+											for(var i in day){
+												var dur = (((day[i].outtime - day[i].intime)/1000)/3600).toFixed(4);
+												var pay = (dur*rate).toFixed(2);
+												timeday+=parseFloat(dur);
+												daypay+=parseFloat(pay);
+											}
+										tr
+											td.
+												#{day[0].intime.toDateString()}
+											td.
+												#{timeday.toFixed(4)}
+											td.
+												#{daypay.toFixed(2)}
+			.row
+				h2 Total pay - Rs.  #{sum.toFixed(2)}
+	
+			
+	

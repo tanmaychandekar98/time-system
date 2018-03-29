@@ -33,34 +33,35 @@ block content
 							br
 						hr
 						.row
-							table.table.col-sm-6.table-responsive
-								thead
-									tr
-										th.
-											Emp_ID*
-										th.
-											Name
-										th.
-											Job
-										th.
-											Hire Date
-										th.
-											Email
-								tbody
-									each emp in list
+							.table-responsive
+								table.table.col-sm-6
+									thead
 										tr
-											td
-												a(href='/users/'+emp._id) #{emp.eid}
-											td.
-												#{emp.name}
-											td.
-												#{emp.job}
-											if emp.hiredate
+											th.
+												Emp_ID*
+											th.
+												Name
+											th.
+												Job
+											th.
+												Hire Date
+											th.
+												Email
+									tbody
+										each emp in list
+											tr
+												td
+													a(href='/users/'+emp._id) #{emp.eid}
 												td.
-													#{emp.hiredate.toDateString()}
-											else
+													#{emp.name}
 												td.
-													-
-											td.
-												#{emp.email}
-							p *Click on an employee id to view employee information
+													#{emp.job}
+												if emp.hiredate
+													td.
+														#{emp.hiredate.toDateString()}
+												else
+													td.
+														-
+												td.
+													#{emp.email}
+								p *Click on an employee id to view employee information
