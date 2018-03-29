@@ -6,7 +6,11 @@ block content
             .row
                 h2 #{emp.name}
                 h3 Job - #{emp.job}
+            .row
+                if emp.intime
+                    p Currently in work
             h3 Your working slots : 
+            p Current rate - 50 Rs. per hour
             .row
                 .table-responsive
                     table.table.col-sm-6
@@ -19,24 +23,27 @@ block content
                                 th.
                                     Out-time
                                 th.
-                                    Duration
+                                    Duration(hrs)
                                 th.
-                                    Pay
+                                    Pay (Rs.)
                         tbody
                             each time,i in times
-                                -
-                                    var dur = (time.outtime - time.intime)/1000;
-                                tr
-                                    td.
-                                        #{i+1}
-                                    td.
-                                        #{time.intime.getTime()/1000}
-                                    td.
-                                        #{time.outtime.getTime()/1000}
-                                    td.
-                                        #{dur}
-                                    td.
-                                        -
+                                if time.complete
+                                    -
+                                        var rate = 50/3600;
+                                        var dur = (((time.outtime - time.intime)/1000)/3600).toFixed(4);
+                                        var pay = (dur*rate).toFixed(4);
+                                    tr
+                                        td.
+                                            #{i+1}
+                                        td.
+                                            #{time.intime.getTime()/1000}
+                                        td.
+                                            #{time.outtime.getTime()/1000}
+                                        td.
+                                            #{dur}
+                                        td.
+                                            #{pay}
                                 
             
     

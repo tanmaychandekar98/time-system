@@ -14,14 +14,7 @@ block content
 				br
 				p *company key needed to register as an employee
 			if user
-				h3 Welcome
+				h3 Welcome #{user.name}
 				if user.admin=="admin"
 					h3
 						a(href='/admin') #{user.company}
-				if user.admin!="admin"
-					h4 Click below to start your time
-					.row
-						.col-sm-6
-							h2 Punch in
-						.col-sm-6
-							h2 Punch out 

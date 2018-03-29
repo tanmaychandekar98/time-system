@@ -1,6 +1,9 @@
 TIME CARDS SYSTEM
 
 A startup company recently got a project from a multinational on Time And Money basis.
-Which would mean he would have to ask each of his employees to enter on a daily basis the time they have spent on the project into a tool,
-and extract at the end of the month for billing to the customer. Can you design a time card management system for him that includes holidays, overtime hours, leaves (sick and casual),
+Which would mean he would have to ask each of his employees to enter on a
+daily basis the time they have spent on the project into a tool,
+and extract at the end of the month for billing to the customer.
+Can you design a time card management system for him that includes holidays,
+overtime hours, leaves (sick and casual),
 trainings etc
