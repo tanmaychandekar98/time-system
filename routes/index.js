@@ -62,13 +62,16 @@ router.post('/register/admin', function(req,res){
 
 router.post('/register/emp', function(req,res){
 	User.findById(req.body.key,function(err,admin){
-		if (err) { res.send ("<h1>Invalid Key</h1>"); }
+		if (err) { res.send ("<h1>Invalid Key</h1><hr><a href='/signup/emp'>Go back</a></h2>"); }
 		else if(!admin){
-			res.send("<h1>Invalid Key</h1>");
+			res.send("<h1>Invalid Key</h1><hr><a href='/signup/emp'>Go back</a></h2>");
 		}else if(admin.admin=="admin"){
 			//console.log(usr.name);
 			var user= new User();
 			user.name=req.body.name;
+            user.job=req.body.job;
+            user.email=req.body.email;
+            user.hiredate=req.body.hdate;
 			user.company=admin.company;
 			user.eid=req.body.id;
 			user.password=req.body.password;
@@ -84,7 +87,7 @@ router.post('/register/emp', function(req,res){
 			});
 		}
 		else{
-			res.send("<h1>Invalid Key - 2</h1>");
+			res.send("<h1>Invalid Key - 2</h1><hr><a href='/signup/emp'>Go back</a></h2>");
 		}
 	});
 });

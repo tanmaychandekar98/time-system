@@ -18,7 +18,9 @@ body {
 }
 
 .table-responsive {
-	height: 100%;
+	max-height: 300px;
+	border:1px solid gray;
+	padding: 10px;
 }
 
 .find-emp * {

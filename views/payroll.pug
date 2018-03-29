@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    if user
+        .container
+            .row
+                h2 #{emp.name}
+                h3 Job - #{emp.job}
+            h3 Your working slots : 
+            .row
+                .table-responsive
+                    table.table.col-sm-6
+                        thead
+                            tr
+                                th.
+                                    Sr. no.
+                                th.
+                                    In-time
+                                th.
+                                    Out-time
+                                th.
+                                    Duration
+                                th.
+                                    Pay
+                        tbody
+                            each time,i in times
+                                -
+                                    var dur = (time.outtime - time.intime)/1000;
+                                tr
+                                    td.
+                                        #{i+1}
+                                    td.
+                                        #{time.intime.getTime()/1000}
+                                    td.
+                                        #{time.outtime.getTime()/1000}
+                                    td.
+                                        #{dur}
+                                    td.
+                                        -
+                                
+            
+    

@@ -35,6 +35,24 @@ router.get('/:id', function(req,res){
 	});
 });
 
+router.get('/payroll/:id' ,function(req,res){
+    Time.find({eid:req.params.id} ,function(err,times){
+        User.findById(req.params.id ,function(err,user){
+            if(err){res.send(err);}
+            else{
+                User.findById(user.admin ,function(err,admin){
+                    res.render('payroll',{
+                        title:'Employee Pay',
+                        times:times,
+                        emp:user,
+                        admin:admin
+                    });
+                });
+            }
+        });
+    });
+});
+
 router.post('/find_emp', function(req,res){
 	if(req.body.eid){
 		User.findOne({eid:req.body.eid}, function(err,emp){
