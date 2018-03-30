@@ -23,7 +23,8 @@ block content
 			dayarray.push(arr);
 		.container
 			.row
-				h2 #{emp.name}
+				h2
+					a(href='/users/'+emp._id) #{emp.name}
 				h3 Job - #{emp.job}
 			.row
 				if emp.intime

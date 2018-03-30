@@ -14,10 +14,16 @@ var timeSchema = mongoose.Schema({
     outtime:{
         type:Date
     },
+    duration:{  //duration in hrs
+        type:Number
+    },
     complete:{  //true when outime else false
         type:Boolean,
         required:true,
         default:false
+    },
+    category:{
+        type:String
     }
 },{collection:'timestamp'});
 

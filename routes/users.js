@@ -41,11 +41,16 @@ router.get('/payroll/:id' ,function(req,res){
             if(err){res.send(err);}
             else{
                 User.findById(user.admin ,function(err,admin){
-                    res.render('payroll',{
-                        title:'Employee Pay',
-                        times:times,
-                        emp:user,
-                        admin:admin
+                    Time.find({category:"leave" , eid:user._id} , function(err , leaves){
+                        if(err) res.send(err);
+                        console.log(leaves);
+                        res.render('payroll',{
+                            title:'Employee Pay',
+                            times:times,
+                            emp:user,
+                            admin:admin,
+                            leaves:leaves
+                        });
                     });
                 });
             }
@@ -74,7 +79,8 @@ router.post('/intime/:id', function(req,res){
             intime.eid = emp._id;
             intime.intime = Date.now();
             emp.in = true;
-            emp.intime = intime._id;
+            emp.intime_id = intime._id;
+            emp.intime = intime.intime;
             emp.save();
             intime.save(function(err){
                 if(err){res.send(err);}
@@ -90,20 +96,58 @@ router.post('/outtime/:id', function(req,res){
     User.findById(req.params.id , function(err,emp){
         if(err){res.send(err);}
         else{
-            Time.findById(emp.intime , function(err,time){
+            Time.findById(emp.intime_id , function(err,time){
                 if (err){res.send(err);}
                 else{
                     time.outtime = Date.now();
                     emp.in = false;
+                    emp.intime_id = null;
                     emp.intime = null;
                     emp.save();
+                    time.duration=(((time.outtime - time.intime)/1000)/3600).toFixed(4);
                     time.complete = true;
+                    time.category = "regular";
                     time.save(function(err){
                         if(err){res.send(err);}
                         else{
                             res.redirect('/users/'+emp._id);
                         }
                     });
+                }
+            });
+        }
+    });
+});
+
+router.post('/leave/:id' ,function(req,res){
+    User.findById(req.params.id ,function(err,user){
+        if (err){res.send(err);}
+        else{
+            var time = new Time();
+            var reason = req.body.selleave;
+            if(reason=="Sick" && user.sickleaves <10){
+                time.duration = 5;
+                user.sickleaves+=1;
+            }
+            else if(reason=="Casual" && user.casualleaves < 10){
+                time.duration = 3;
+                user.casualleaves += 1;
+            }
+            else if (raeson=="Training" &&user.trainingleaves < 10){
+                time.duration = 7;
+                user.trainingleaves += 1;
+            } else {
+                time.duration = 0;
+            }
+            time.eid = user._id;
+            time.category = "leave";
+            time.intime = new Date(req.body.ldate);
+            time.complete = true;
+            user.save();
+            time.save(function(err){
+                if (err) res.send(err);
+                else{
+                    res.redirect('/users/'+user._id);
                 }
             });
         }

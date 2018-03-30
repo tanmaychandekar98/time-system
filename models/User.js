@@ -37,8 +37,26 @@ var userSchema = mongoose.Schema({
 		required:true,
 		default:false
 	},
-	intime:{
+	intime:{  //null if not working else in-punch time
+		type:Date
+	},
+	intime_id:{  //null if not working else intime object
 		type:String
+	},
+	sickleaves:{  //max 12 leaves are allowed to a user
+		type:Number,
+		required:true,
+		default:0
+	},
+	casualleaves:{  //max 12 leaves are allowed to a user
+		type:Number,
+		required:true,
+		default:0
+	},
+	trainingleaves:{  //max 12 leaves are allowed to a user
+		type:Number,
+		required:true,
+		default:0
 	}
 },{collection:'users'});
 
