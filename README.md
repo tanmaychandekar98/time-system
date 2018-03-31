@@ -34,3 +34,10 @@ To backup database data
 ```
 mongodump --out /data/backup/ --db time-system
 ```
+
+To update your repo on master branch : 
+```
+git checkout master
+git fetch upstream master
+git reset --hard FETCH_HEAD
+```
