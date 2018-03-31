@@ -103,13 +103,13 @@ router.post('/outtime/:id', function(req,res){
                     emp.in = false;
                     emp.intime_id = null;
                     emp.intime = null;
-                    emp.save();
                     time.duration=(((time.outtime - time.intime)/1000)/3600).toFixed(4);
                     time.complete = true;
                     time.category = "regular";
                     time.save(function(err){
                         if(err){res.send(err);}
                         else{
+                            emp.save();
                             res.redirect('/users/'+emp._id);
                         }
                     });
@@ -121,7 +121,7 @@ router.post('/outtime/:id', function(req,res){
 
 router.post('/leave/:id' ,function(req,res){
     User.findById(req.params.id ,function(err,user){
-        if (err){res.send(err);}
+        if (err){res.send(err+"1");}
         else{
             var time = new Time();
             var reason = req.body.selleave;
@@ -133,7 +133,7 @@ router.post('/leave/:id' ,function(req,res){
                 time.duration = 3;
                 user.casualleaves += 1;
             }
-            else if (raeson=="Training" &&user.trainingleaves < 10){
+            else if (reason=="Training" &&user.trainingleaves < 10){
                 time.duration = 7;
                 user.trainingleaves += 1;
             } else {
@@ -141,12 +141,13 @@ router.post('/leave/:id' ,function(req,res){
             }
             time.eid = user._id;
             time.category = "leave";
+            time.leavetype = reason;
             time.intime = new Date(req.body.ldate);
             time.complete = true;
-            user.save();
             time.save(function(err){
-                if (err) res.send(err);
+                if (err) res.send(err+"2");
                 else{
+                    user.save();
                     res.redirect('/users/'+user._id);
                 }
             });

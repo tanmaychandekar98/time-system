@@ -24,6 +24,9 @@ var timeSchema = mongoose.Schema({
     },
     category:{
         type:String
+    },
+    leavetype:{
+        type:String
     }
 },{collection:'timestamp'});
 
