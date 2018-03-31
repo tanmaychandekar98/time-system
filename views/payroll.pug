@@ -10,7 +10,7 @@ block content
 			var arr = new Array();
 			var curr=times[0].intime.toDateString();
 			for(var i=0;i<times.length;i++){
-				if(times[i].complete && !times[i].category){
+				if(times[i].complete && times[i].category!="leave"){
 					var now = times[i].intime.toDateString();
 					if(curr==now){
 						arr.push(times[i]);
@@ -98,16 +98,24 @@ block content
 											Duration(hrs)
 										th.
 											Day-Pay(Rs.)
+										th.
+											Overtime-hours
 								tbody
 									each day in dayarray
 										-
+											//Script to find daypay and overtime hours
 											var timeday=0,daypay=0;
 											for(var i in day){
 													var dur = (((day[i].outtime - day[i].intime)/1000)/3600).toFixed(4);
-													var pay = (dur*rate).toFixed(2);
 													timeday+=parseFloat(dur);
-													daypay+=parseFloat(pay);
 											}
+											if(timeday > 5){
+												daypay = rate * 5;
+												daypay += 1.25*rate*(timeday-5);
+											}else{
+												daypay = rate * timeday;
+											}
+											
 										tr
 											td.
 												#{day[0].intime.toDateString()}
@@ -115,6 +123,11 @@ block content
 												#{timeday.toFixed(4)}
 											td.
 												#{daypay.toFixed(2)}
+											td
+												if timeday > 5
+													| #{(timeday-5).toFixed(4)}
+												else
+													| -
 					#leave.tab-pane.fade.in
 						.table-responsive
 							table.table.col-sm-6
