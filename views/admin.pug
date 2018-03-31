@@ -40,6 +40,8 @@ block content
 											th.
 												Emp_ID*
 											th.
+												Status
+											th.
 												Name
 											th.
 												Job
@@ -52,6 +54,8 @@ block content
 											tr
 												td
 													a(href='/users/'+emp._id) #{emp.eid}
+												td
+													span.fa.fa-check-circle(style=emp.intime?"color:green;":"")
 												td.
 													#{emp.name}
 												td.
@@ -64,4 +68,4 @@ block content
 														-
 												td.
 													#{emp.email}
-								p *Click on an employee id to view employee information
+							p *Click on an employee id to view employee information

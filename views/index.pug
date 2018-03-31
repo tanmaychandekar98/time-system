@@ -16,5 +16,7 @@ block content
 			if user
 				h3 Welcome #{user.name}
 				if user.admin=="admin"
-					h3
-						a(href='/admin') #{user.company}
+					a.btn.btn-primary(href='/admin') #{user.company}
+				else
+					a.btn.btn-primary(href='/users/'+user._id) #{user.name}
+					
