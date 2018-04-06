@@ -32,3 +32,48 @@ body {
 	padding: 3px;
 	opacity: 0.7;
 }
+
+.box1{
+bottom: 100px;
+border:1px solid #fff;padding:50px 60px;margin-top:20vh;
+-webkit-box-shadow:  6px -4px 71px 10px rgba(0,0,0,0.75);
+-moz-box-shadow: 6px -4px 71px 10px rgba(0,0,0,0.75);
+box-shadow:  6px -4px 71px 10px rgba(0,0,0,0.75);}
+
+.box2{
+bottom: 695px;
+left:103px;
+border:1px solid #fff;padding:65px 30px;margin-top:20vh;
+-webkit-box-shadow:  6px -4px 71px 10px rgba(0,0,0,0.75);
+-moz-box-shadow: 6px -4px 71px 10px rgba(0,0,0,0.75);
+box-shadow:  6px -4px 71px 10px rgba(0,0,0,0.75);}
+
+
+.btn1{box-shadow: rgb(28, 27, 24) 0px 1px 0px 0px;
+background: linear-gradient(rgb(234, 224, 194) 5%, rgb(204, 194, 166) 100%) rgb(234, 224, 194);
+border-radius: 15px; 
+border: 2px solid rgb(51, 48, 41); 
+display: inline-block; 
+cursor: pointer; color: rgb(80, 87, 57);
+font-family: Arial; 
+font-size: 14px; 
+font-weight: bold; 
+padding: 12px 16px; 
+text-decoration: none;
+text-shadow: rgb(255, 255, 255) 0px 1px 0px;}
+
+.btn2{
+box-shadow: rgb(137, 149, 153) 3px 4px 0px 0px; 
+background: linear-gradient(rgb(234, 224, 194) 5%, rgb(204, 194, 166) 100%) rgb(234, 224, 194); 
+border-radius: 15px;
+border: 2px solid rgb(51,48,41); 
+display: inline-block; 
+cursor: pointer;
+color: rgb(80,87,57); 
+font-family: Arial; 
+font-size: 14px; 
+font-weight: bold;
+padding: 12px 16px;
+text-decoration: none; 
+text-shadow: rgb(255, 255, 255) 0px 1px 0px;
+}

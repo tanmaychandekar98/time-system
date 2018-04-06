@@ -3,31 +3,34 @@ extends layout
 block content
 	#emp-page
 		if emp
-			.container
-				h1 Employee
-				hr
-				.col-sm-3
+			.row
+				.container.box1.col-sm-5.col-sm-offset-1
+					h1 Employee
+					hr
 					h2 #{emp.name}
 					hr
 					h4 Company - #{emp.company}
 					h4 Job - #{emp.job}
 					if admin
 						h4 Admin - #{admin.name}
+					h4 Hire-Date-#{emp.hiredate}
+					h4 Job-#{emp.job}
+					h4 Email-#{emp.email} 	
+					a.btn1(href='/users/payroll/'+emp._id) Show payroll and working hours
 		if user
-			hr
 			.row.container
-				.container.col-sm-6
+				.container.box1.col-sm-4.col-sm-offset-2
 					if user.admin!='admin' && !user.in
 						form(method='POST' action='/users/intime/'+user._id)
 							.form-group
-								button.btn.btn-default(type='submit') In-Punch
+								button.btn2(type='submit') In-Punch
 					if user.admin!='admin' && user.in
 						h5 You punched in at #{user.intime}
 						form(method='POST' action='/users/outtime/'+user._id)
 							.form-group
-								button.btn.btn-default(type='submit') Out-Punch
+								button.btn1(type='submit') Out-Punch
 				if user.name==emp.name
-					.container.col-sm-6
+					.container.box2.col-sm-6
 						.col-sm-offset-4
 							h3 Apply for leave
 							p Sick - 5 hrs pay
@@ -47,8 +50,7 @@ block content
 									input.form-control(name="ldate" ,type="date")
 							.form-group
 								.col-sm-offset-4.col-sm-10
-									button.btn.btn-default(type="submit") Apply for leave
+									button.btn1(type="submit") Apply for leave
 						p Limit for each type of leave is 12 days
-			hr
-			.container
-				a.btn.btn-default(href='/users/payroll/'+emp._id) Show payroll and working hours
+			
+				

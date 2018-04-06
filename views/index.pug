@@ -7,16 +7,16 @@ block content
 		.container
 			hr
 			if !user
-				a.button.btn.btn-default(href='/signup/admin') Get Started as an admin
+				a.button.btn1(href='/signup/admin') Get Started as an admin
 				span -----
-				a.button.btn.btn-default(href='/signup/emp') Get Started as an employee*
+				a.button.btn1(href='/signup/emp') Get Started as an employee*
 				br
 				br
 				p *company key needed to register as an employee
 			if user
 				h3 Welcome #{user.name}
 				if user.admin=="admin"
-					a.btn.btn-primary(href='/admin') #{user.company}
+					a.btn1(href='/admin') #{user.company}
 				else
-					a.btn.btn-primary(href='/users/'+user._id) #{user.name}
+					a.btn1(href='/users/'+user._id) #{user.name}
 					
