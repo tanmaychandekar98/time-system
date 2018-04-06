@@ -14,7 +14,8 @@ var userSchema = mongoose.Schema({
 		required:true
 	},
 	job:{
-		type:String
+		type:String,
+		required:true
 	},
 	password:{
 		type:String

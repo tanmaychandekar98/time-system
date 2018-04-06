@@ -23,9 +23,14 @@ block content
 				.col-sm-6
 					input.form-control(name="name" ,type="text",placeholder="employee name")
 			.form-group
-				label.control-label.col-sm-4(for="job") Job :
+				label.control-label.col-sm-4(for="job") Job* :
 				.col-sm-6
-					input.form-control(name="job" ,type="text",placeholder="Job")
+					select.form-control(name="job")#job
+						option Developer
+						option Project Manager
+						option HR Manager
+						option Assistant
+						option Consultant
 			.form-group
 				label.control-label.col-sm-4(for="hdate") Hire date :
 				.col-sm-6

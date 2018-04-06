@@ -4,6 +4,7 @@ var router = express.Router();
 var User = require('../models/User');
 var Time = require('../models/Time');
 
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   User.find({},function(err,users){
