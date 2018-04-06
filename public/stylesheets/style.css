@@ -1,5 +1,5 @@
 body {
-	padding-top: 70px;
+	padding: 70px 0px;
 	background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/bg.jpg");
 	background-size: cover;
 }
@@ -34,16 +34,13 @@ body {
 }
 
 .box1{
-bottom: 100px;
-border:1px solid #fff;padding:50px 60px;margin-top:20vh;
+border:1px solid #fff;padding:50px 60px;
 -webkit-box-shadow:  6px -4px 71px 10px rgba(0,0,0,0.75);
 -moz-box-shadow: 6px -4px 71px 10px rgba(0,0,0,0.75);
 box-shadow:  6px -4px 71px 10px rgba(0,0,0,0.75);}
 
 .box2{
-bottom: 695px;
-left:103px;
-border:1px solid #fff;padding:65px 30px;margin-top:20vh;
+border:1px solid #fff;padding:65px 30px;height:500px;
 -webkit-box-shadow:  6px -4px 71px 10px rgba(0,0,0,0.75);
 -moz-box-shadow: 6px -4px 71px 10px rgba(0,0,0,0.75);
 box-shadow:  6px -4px 71px 10px rgba(0,0,0,0.75);}
@@ -76,4 +73,14 @@ font-weight: bold;
 padding: 12px 16px;
 text-decoration: none; 
 text-shadow: rgb(255, 255, 255) 0px 1px 0px;
+}
+
+.btn-punch {
+	height: 150px;
+	width: 150px;
+	font-size: 22px;
+	position: absolute;
+	top: 50%;
+	bottom: 50%;
+	transform: translate(-50%,-50%);
 }

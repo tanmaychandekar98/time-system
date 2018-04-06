@@ -3,8 +3,8 @@ extends layout
 block content
 	#emp-page
 		if emp
-			.row
-				.container.box1.col-sm-5.col-sm-offset-1
+			.container
+				.box2.col-sm-5.text-center
 					h1 Employee
 					hr
 					h2 #{emp.name}
@@ -13,44 +13,52 @@ block content
 					h4 Job - #{emp.job}
 					if admin
 						h4 Admin - #{admin.name}
-					h4 Hire-Date-#{emp.hiredate}
-					h4 Job-#{emp.job}
-					h4 Email-#{emp.email} 	
+					h4 Hire-Date - #{emp.hiredate}
+					h4 Job - #{emp.job}
+					h4 Email - #{emp.email} 	
 					a.btn1(href='/users/payroll/'+emp._id) Show payroll and working hours
+				if user
+					.box2.col-sm-5.col-sm-offset-2.text-center
+						if user.admin!='admin' && !user.in
+							form(method='POST' action='/users/intime/'+user._id)
+								.form-group
+									button.btn2.btn-punch(type='submit') In-Punch
+						if user.admin!='admin' && user.in
+							h4 You punched in at #{user.intime}
+							form(method='POST' action='/users/outtime/'+user._id)
+								.form-group
+									button.btn1.btn-punch(type='submit') Out-Punch
+			br
+			.container
+				hr
+			br
 		if user
-			.row.container
-				.container.box1.col-sm-4.col-sm-offset-2
-					if user.admin!='admin' && !user.in
-						form(method='POST' action='/users/intime/'+user._id)
-							.form-group
-								button.btn2(type='submit') In-Punch
-					if user.admin!='admin' && user.in
-						h5 You punched in at #{user.intime}
-						form(method='POST' action='/users/outtime/'+user._id)
-							.form-group
-								button.btn1(type='submit') Out-Punch
-				if user.name==emp.name
-					.container.box2.col-sm-6
-						.col-sm-offset-4
+			if user.name==emp.name
+				.container
+					.box2
+						.col-sm-6
 							h3 Apply for leave
 							p Sick - 5 hrs pay
 							p Casual - 3 hrs pay
 							p Training - 7 hrs pay
-						form.form-horizontal(method="POST" action="/users/leave/"+user._id)
-							.form-group
-								label.control-label.col-sm-4(for="sel1") Select reason :
-								.col-sm-6
-									select.form-control(name="selleave")#sel1
-										option Sick
-										option Casual
-										option Training
-							.form-group
-								label.control-label.col-sm-4(for="ldate") Date :
-								.col-sm-6
-									input.form-control(name="ldate" ,type="date")
-							.form-group
-								.col-sm-offset-4.col-sm-10
-									button.btn1(type="submit") Apply for leave
-						p Limit for each type of leave is 12 days
-			
+							form.form-horizontal(method="POST" action="/users/leave/"+user._id)
+								.form-group
+									.col-sm-8
+										select.form-control(name="selleave")#sel1
+											option Sick
+											option Casual
+											option Training
+								.form-group
+									.col-sm-8
+										input.form-control(name="ldate" ,type="date")
+								.form-group
+									.col-sm-offset-1
+										button.btn1(type="submit") Apply for leave
+						.col-sm-4
+							p Limit for each type of leave is 12 days
+							p Remaining :
+							p Sick - #{10-user.sickleaves}
+							p Casual - #{10-user.casualleaves}
+							p Training - #{10-user.trainingleaves}
+				
 				

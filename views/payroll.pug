@@ -54,6 +54,7 @@ block content
 				}
 			}
 			montharray.push(arr);
+			const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
 			
 			
 		.container
@@ -188,7 +189,7 @@ block content
 											
 										tr
 											td.
-												#{month[0].intime.toDateString()}
+												#{monthNames[month[0].intime.getMonth()]}
 											td.
 												#{timemonth.toFixed(4)}
 											td.
@@ -209,7 +210,7 @@ block content
 										- sum += parseFloat(leave.duration * rate);
 										tr
 											td.
-												#{leave.intime.getMonth()}
+												#{leave.intime.toDateString()}
 											td.
 												#{leave.leavetype}
 											td.
