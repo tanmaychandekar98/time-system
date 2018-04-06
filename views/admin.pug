@@ -21,14 +21,14 @@ block content
 					br
 					if !list
 						.row
-							a.btn.btn-primary(href='/users/list/'+user._id) Show employees list
+							a.btn1(href='/users/list/'+user._id) Show employees list
 					if list
 						.row
 							form.form-inline.find-emp(method='POST' action="/users/find_emp")
 								.form-group
 									label(for="eid") ID:
 									input.form-control(name="eid" ,type="text")
-								button.btn.btn-default(type="submit") View profile
+								button.btn1(type="submit") View profile
 							br
 							br
 						hr

@@ -15,19 +15,19 @@ block content
 					h4 Hire-Date-#{emp.hiredate}
 					h4 Job-#{emp.job}
 					h4 Email-#{emp.email} 	
-					a.btn.btn-default(href='/users/payroll/'+emp._id) Show payroll and working hours
+					a.btn1(href='/users/payroll/'+emp._id) Show payroll and working hours
 		if user
 			.row.container
 				.container.box1.col-sm-4.col-sm-offset-2
 					if user.admin!='admin' && !user.in
 						form(method='POST' action='/users/intime/'+user._id)
 							.form-group
-								button.btn.btn-default(type='submit') In-Punch
+								button.btn2(type='submit') In-Punch
 					if user.admin!='admin' && user.in
 						h5 You punched in at #{user.intime}
 						form(method='POST' action='/users/outtime/'+user._id)
 							.form-group
-								button.btn.btn-default(type='submit') Out-Punch
+								button.btn1(type='submit') Out-Punch
 				if user.name==emp.name
 					.container.box2.col-sm-6
 						.col-sm-offset-4
