@@ -41,3 +41,9 @@ git checkout master
 git fetch upstream master
 git reset --hard FETCH_HEAD
 ```
+
+To import test case file (.json):
+Run in /test folder
+```
+mongoimport --db time-system --collection users < users.json
+```
