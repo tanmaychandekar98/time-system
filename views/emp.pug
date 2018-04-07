@@ -13,27 +13,31 @@ block content
 					h4 Job - #{emp.job}
 					if admin
 						h4 Admin - #{admin.name}
-					h4 Hire-Date - #{emp.hiredate}
+					h4 Hire-Date - #{emp.hiredate.toDateString()}
 					h4 Job - #{emp.job}
 					h4 Email - #{emp.email} 	
 					a.btn1(href='/users/payroll/'+emp._id) Show payroll and working hours
-				if user
+				if user.name==emp.name
 					.box2.col-sm-5.col-sm-offset-2.text-center
-						if user.admin!='admin' && !user.in
+						if !user.in
 							form(method='POST' action='/users/intime/'+user._id)
 								.form-group
 									button.btn2.btn-punch(type='submit') In-Punch
-						if user.admin!='admin' && user.in
+						if user.in
 							h4 You punched in at #{user.intime}
 							form(method='POST' action='/users/outtime/'+user._id)
 								.form-group
 									button.btn1.btn-punch(type='submit') Out-Punch
-			br
-			.container
-				hr
-			br
+				else
+					.col-sm-5.col-sm-offset-2
+						h3 Check employees' payroll by clicking the button
+			
 		if user
 			if user.name==emp.name
+				br
+				.container
+					hr
+				br
 				.container
 					.box2
 						.col-sm-6

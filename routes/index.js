@@ -49,13 +49,14 @@ router.post('/register/admin', function(req,res){
 	user.eid=req.body.id;
 	user.password=req.body.password;
 	user.admin="admin";
+	user.job="boss";
 	user.save(function(err){
 		if (err) {
 			console.log(err);
 			res.send(err);
 		}else{
 			//res.send("Registered");
-			res.redirect('/admin');
+			res.redirect('/login');
 		}
 	});
 });
@@ -82,7 +83,7 @@ router.post('/register/emp', function(req,res){
 					res.send("<h2>"+err.message+"<hr><a href='/signup/emp'>Go back</a></h2>");
 				}else{
 					//res.send("Registered 1 employee");
-					res.redirect('/');
+					res.redirect('/login');
 				}
 			});
 		}

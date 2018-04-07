@@ -2,21 +2,39 @@ extends layout
 
 block content
 	#home
-		h1= title
-		p Welcome to #{title}
 		.container
-			hr
+			.col-sm-6
+				h1= title
+				h3 Welcome to #{title}
+				hr
+				ul
+					li Track working hours
+					li Get salary info
+					li Apply for leaves
+				if user
+					h3 Welcome #{user.name}
+					if user.admin=="admin"
+						a.btn1(href='/admin') #{user.company}
+					else
+						a.btn1(href='/users/'+user._id) #{user.name}
 			if !user
-				a.button.btn1(href='/signup/admin') Get Started as an admin
-				span -----
-				a.button.btn1(href='/signup/emp') Get Started as an employee*
-				br
-				br
-				p *company key needed to register as an employee
-			if user
-				h3 Welcome #{user.name}
-				if user.admin=="admin"
-					a.btn1(href='/admin') #{user.company}
-				else
-					a.btn1(href='/users/'+user._id) #{user.name}
-					
+				.col-sm-5.col-sm-offset-1.box2
+					h1 Login to continue
+					hr
+					form.form-horizontal(method="POST" action="/login")
+						.form-group
+							label.control-label.col-sm-4(for="username") ID:
+							.col-sm-6
+								input.form-control(name="username" ,type="text" ,placeholder="ID")
+						.form-group
+							label.control-label.col-sm-4(for="password") Password:
+							.col-sm-6
+								input.form-control(name="password" ,type="password",placeholder="Password")
+						input.btn1(type="submit" value="Login")
+					hr
+					h4 Don't have an account ?
+					a.btn.btn-primary(href='/signup/emp') Register as an employee
+					br
+					br
+					a.btn.btn-primary(href='/signup/admin') Register as a company
+								
