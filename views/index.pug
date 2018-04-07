@@ -18,23 +18,25 @@ block content
 					else
 						a.btn1(href='/users/'+user._id) #{user.name}
 			if !user
-				.col-sm-5.col-sm-offset-1.box2
+				.col-sm-5.col-sm-offset-1.box2(style="padding-top:25px;")
 					h1 Login to continue
 					hr
 					form.form-horizontal(method="POST" action="/login")
 						.form-group
-							label.control-label.col-sm-4(for="username") ID:
-							.col-sm-6
+							.col-sm-6.col-sm-offset-3
 								input.form-control(name="username" ,type="text" ,placeholder="ID" required)
 						.form-group
-							label.control-label.col-sm-4(for="password") Password:
-							.col-sm-6
+							.col-sm-6.col-sm-offset-3
 								input.form-control(name="password" ,type="password",placeholder="Password" required)
-						input.btn1(type="submit" value="Login")
+						input.btn.btn-success(type="submit" value="Login")
 					hr
 					h4 Don't have an account ?
-					a.btn.btn-primary(href='/signup/emp') Register as an employee
+					br
+					a.btn.btn-primary.btn-xs(href='/signup/emp') Register as an employee *
 					br
 					br
-					a.btn.btn-primary(href='/signup/admin') Register as a company
+					a.btn.btn-primary.btn-xs(href='/signup/admin') Register as a company admin
+					br
+					br
+					p *Company key required to register as an employee
 								
