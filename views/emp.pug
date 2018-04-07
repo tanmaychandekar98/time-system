@@ -19,15 +19,16 @@ block content
 					a.btn1(href='/users/payroll/'+emp._id) Show payroll and working hours
 				if user.name==emp.name
 					.box2.col-sm-5.col-sm-offset-2.text-center
+						h2#time
 						if !user.in
 							form(method='POST' action='/users/intime/'+user._id)
 								.form-group
 									button.btn2.btn-punch(type='submit') In-Punch
 						if user.in
-							h4 You punched in at #{user.intime}
 							form(method='POST' action='/users/outtime/'+user._id)
 								.form-group
 									button.btn1.btn-punch(type='submit') Out-Punch
+							h4(style="position:absolute;bottom:50px;") You punched in at #{user.intime}
 				else
 					.col-sm-5.col-sm-offset-2
 						h3 Check employees' payroll by clicking the button
@@ -64,5 +65,27 @@ block content
 							p Sick - #{10-user.sickleaves}
 							p Casual - #{10-user.casualleaves}
 							p Training - #{10-user.trainingleaves}
+	script.
+		function checkTime(i) {
+		  if (i < 10) {
+			i = "0" + i;
+		  }
+		  return i;
+		}
+
+		function startTime() {
+		  var today = new Date();
+		  var h = today.getHours();
+		  var m = today.getMinutes();
+		  var s = today.getSeconds();
+		  // add a zero in front of numbers<10
+		  m = checkTime(m);
+		  s = checkTime(s);
+		  document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+		  t = setTimeout(function() {
+			startTime()
+		  }, 500);
+		}
+		startTime();
 				
 				

@@ -6,17 +6,36 @@ block content
 			.col-sm-offset-4.col-sm-4
 				h3.col-sm-offset-4 Login
 				hr
-				form.form-horizontal(method="POST" action="/login")
+				form.form-horizontal.needs-validation(method="POST" action="/login")
 					.form-group
 						label.control-label.col-sm-4(for="username") ID:
 						.col-sm-6
-							input.form-control(name="username" ,type="text" ,placeholder="ID")
+							input.form-control(name="username" ,type="text" ,placeholder="ID" required)
 					.form-group
 						label.control-label.col-sm-4(for="password") Password:
 						.col-sm-6
-							input.form-control(name="password" ,type="password",placeholder="Password")
+							input.form-control(name="password" ,type="password",placeholder="Password" required)
 
 					hr
 					br
 
-					input.btn1.col-sm-offset-4(type="submit" value="Login")
+					input.btn1.col-sm-offset-4(onclick="swal(\"Good job!\", \"You clicked the button!\", \"success\");" type="submit" value="Login")
+
+	script.
+		(function() {
+		  'use strict';
+		  window.addEventListener('load', function() {
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.getElementsByClassName('needs-validation');
+			// Loop over them and prevent submission
+			var validation = Array.prototype.filter.call(forms, function(form) {
+			  form.addEventListener('submit', function(event) {
+				if (form.checkValidity() === false) {
+				  event.preventDefault();
+				  event.stopPropagation();
+				}
+				form.classList.add('was-validated');
+			  }, false);
+			});
+		  }, false);
+		})();

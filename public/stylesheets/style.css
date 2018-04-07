@@ -18,6 +18,10 @@ a {
 	cursor:pointer;  
 }
 
+option {
+	color: black;
+}
+
 #home {
 	text-align: center;
 }

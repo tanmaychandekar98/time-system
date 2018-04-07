@@ -31,12 +31,13 @@ router.get('/signup/emp', function(req, res, next) {
 router.get('/admin', function(req, res, next) {
   //res.send("Admin profile page");
   res.render('admin' , {
-  	title:"Administrator"
+	title:"Administrator"
   });
 });
 
 //Login route
 router.get('/login',function(req,res){
+	console.log(req.body);
 	res.render('login',{title:"Login"});
 });
 
@@ -70,9 +71,9 @@ router.post('/register/emp', function(req,res){
 			//console.log(usr.name);
 			var user= new User();
 			user.name=req.body.name;
-            user.job=req.body.job;
-            user.email=req.body.email;
-            user.hiredate=req.body.hdate;
+			user.job=req.body.job;
+			user.email=req.body.email;
+			user.hiredate=req.body.hdate;
 			user.company=admin.company;
 			user.eid=req.body.id;
 			user.password=req.body.password;
@@ -93,13 +94,19 @@ router.post('/register/emp', function(req,res){
 	});
 });
 
+//Login route
 
-router.post('/login',function(req,res,next){
-	passport.authenticate('local',{
-		successRedirect:'/',
-		failureRedirect:'/login'
-	})(req,res,next);
-});
+router.post('/login',
+	passport.authenticate('local'),
+	function(req, res) {
+		if (req.user.admin=="admin")  //if user is admin , redirect to admin page
+			res.redirect('/admin');
+		else
+			res.redirect('/users/' + req.user._id); //else redirect to employee page
+	// If this function gets called, authentication was successful.
+	// `req.user` contains the authenticated user.
+	});
+
 
 router.get('/logout',function(req,res){
 	req.logout();

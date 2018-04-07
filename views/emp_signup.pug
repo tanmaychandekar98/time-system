@@ -9,23 +9,23 @@ block content
 			.form-group
 				label.control-label.col-sm-4(for="key") Company Key *  :
 				.col-sm-6
-					input.form-control(name="key" ,type="text" ,placeholder="Admin key")
+					input.form-control(name="key" ,type="text" ,placeholder="Admin key" required)
 			.form-group
 				label.control-label.col-sm-4(for="id") Employee ID *  :
 				.col-sm-6
-					input.form-control(name="id" ,type="text",placeholder="Employee ID")
+					input.form-control(name="id" ,type="text",placeholder="Employee ID" required)
 			.form-group
-				label.control-label.col-sm-4(for="name") Password :
+				label.control-label.col-sm-4(for="name") Password * :
 				.col-sm-6
-					input.form-control(name="password" ,type="password",placeholder="Password")
+					input.form-control(name="password" ,type="password",placeholder="Password" required)
 			.form-group
 				label.control-label.col-sm-4(for="name") Employee Name *  :
 				.col-sm-6
-					input.form-control(name="name" ,type="text",placeholder="employee name")
+					input.form-control(name="name" ,type="text",placeholder="employee name" required)
 			.form-group
 				label.control-label.col-sm-4(for="job") Job* :
 				.col-sm-6
-					select.form-control(name="job")#job
+					select.form-control(name="job" required)#job
 						option Developer
 						option Project Manager
 						option HR Manager
