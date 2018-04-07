@@ -4,57 +4,59 @@ block content
 	if user
 		//Scripts to find specific arrays
 		-
-			//Algo to find rate for an employee
-			var jobs = [
-				{job:"Project Manager",rate:500},
-				{job:"HR Manager",rate:600},
-				{job:"Developer",rate:400},
-				{job:"Assistant",rate:300},
-				{job:"Consultant",rate:600}
-			]
-			let obj = jobs.find(o => o.job == emp.job);
-			var rate = obj.rate;
-			if(!rate)
-				rate = 400; //default rate if no job is provided
+			if (times[0]!=null){
+				//Algo to find rate for an employee
+				var jobs = [
+					{job:"Project Manager",rate:500},
+					{job:"HR Manager",rate:600},
+					{job:"Developer",rate:400},
+					{job:"Assistant",rate:300},
+					{job:"Consultant",rate:600}
+				]
+				let obj = jobs.find(o => o.job == emp.job);
+				var rate = obj.rate;
+				if(!rate)
+					rate = 400; //default rate if no job is provided
 
-			//Algo to find daywise distribution
-			var dayarray = new Array();
-			var arr = new Array();
-			var curr=times[0].intime.toDateString();
-			for(var i=0;i<times.length;i++){
-				if(times[i].complete && times[i].category!="leave"){
-					var now = times[i].intime.toDateString();
-					if(curr==now){
-						arr.push(times[i]);
+				//Algo to find daywise distribution
+				var dayarray = new Array();
+				var arr = new Array();
+				var curr=times[0].intime.toDateString();
+				for(var i=0;i<times.length;i++){
+					if(times[i].complete && times[i].category!="leave"){
+						var now = times[i].intime.toDateString();
+						if(curr==now){
+							arr.push(times[i]);
+						}
+						else{
+							curr = now;
+							dayarray.push(arr);
+							arr = new Array(times[i]);
+						}
 					}
-					else{
-						curr = now;
-						dayarray.push(arr);
-						arr = new Array(times[i]);
+				}
+				dayarray.push(arr);
+				
+				// Algo to find monthwise distribution
+				var montharray = new Array();
+				var arr = new Array();
+				var curr=times[0].intime.getMonth();
+				for(var i=0;i<times.length;i++){
+					if(times[i].complete && times[i].category!="leave"){
+						var now = times[i].intime.getMonth();
+						if(curr==now){
+							arr.push(times[i]);
+						}
+						else{
+							curr = now;
+							montharray.push(arr);
+							arr = new Array(times[i]);
+						}
 					}
 				}
 			}
-			dayarray.push(arr);
-			
-			// Algo to find monthwise distribution
-			var montharray = new Array();
-			var arr = new Array();
-			var curr=times[0].intime.getMonth();
-			for(var i=0;i<times.length;i++){
-				if(times[i].complete && times[i].category!="leave"){
-					var now = times[i].intime.getMonth();
-					if(curr==now){
-						arr.push(times[i]);
-					}
-					else{
-						curr = now;
-						montharray.push(arr);
-						arr = new Array(times[i]);
-					}
-				}
-			}
-			montharray.push(arr);
-			const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+				montharray.push(arr);
+				const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
 			
 			
 		.container
@@ -133,33 +135,34 @@ block content
 										th.
 											Overtime-hours
 								tbody
-									each day in dayarray
-										-
-											//Script to find daypay and overtime hours
-											var timeday=0,daypay=0;
-											for(var i in day){
-													var dur = (((day[i].outtime - day[i].intime)/1000)/3600).toFixed(4);
-													timeday+=parseFloat(dur);
-											}
-											if(timeday > 5){
-												daypay = rate * 5;
-												daypay += 1.25*rate*(timeday-5);
-											}else{
-												daypay = rate * timeday;
-											}
-											
-										tr
-											td.
-												#{day[0].intime.toDateString()}
-											td.
-												#{timeday.toFixed(4)}
-											td.
-												#{daypay.toFixed(2)}
-											td
-												if timeday > 5
-													| #{(timeday-5).toFixed(4)}
-												else
-													| -
+									if dayarray
+										each day in dayarray
+											-
+												//Script to find daypay and overtime hours
+												var timeday=0,daypay=0;
+												for(var i in day){
+														var dur = (((day[i].outtime - day[i].intime)/1000)/3600).toFixed(4);
+														timeday+=parseFloat(dur);
+												}
+												if(timeday > 5){
+													daypay = rate * 5;
+													daypay += 1.25*rate*(timeday-5);
+												}else{
+													daypay = rate * timeday;
+												}
+												
+											tr
+												td.
+													#{day[0].intime.toDateString()}
+												td.
+													#{timeday.toFixed(4)}
+												td.
+													#{daypay.toFixed(2)}
+												td
+													if timeday > 5
+														| #{(timeday-5).toFixed(4)}
+													else
+														| -
 					#monthwise.tab-pane.fade.in
 						.table-responsive
 							table.table.col-sm-6
@@ -172,28 +175,29 @@ block content
 										th.
 											Month-Pay(Rs.)
 								tbody
-									each month in montharray
-										-
-											//Script to find daypay and overtime hours
-											var timemonth=0,monthpay=0;
-											for(var i in month){
-													var dur = (((month[i].outtime - month[i].intime)/1000)/3600).toFixed(4);
-													timemonth+=parseFloat(dur);
-											}
-											if(timemonth > 5){
-												monthpay = rate * 5;
-												monthpay += 1.25*rate*(timemonth-5);
-											}else{
-												monthpay = rate * timemonth;
-											}
-											
-										tr
-											td.
-												#{monthNames[month[0].intime.getMonth()]}
-											td.
-												#{timemonth.toFixed(4)}
-											td.
-												#{monthpay.toFixed(2)}
+									if montharray
+										each month in montharray
+											-
+												//Script to find daypay and overtime hours
+												var timemonth=0,monthpay=0;
+												for(var i in month){
+														var dur = (((month[i].outtime - month[i].intime)/1000)/3600).toFixed(4);
+														timemonth+=parseFloat(dur);
+												}
+												if(timemonth > 5){
+													monthpay = rate * 5;
+													monthpay += 1.25*rate*(timemonth-5);
+												}else{
+													monthpay = rate * timemonth;
+												}
+												
+											tr
+												td.
+													#{monthNames[month[0].intime.getMonth()]}
+												td.
+													#{timemonth.toFixed(4)}
+												td.
+													#{monthpay.toFixed(2)}
 					#leave.tab-pane.fade.in
 						.table-responsive
 							table.table.col-sm-6

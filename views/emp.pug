@@ -13,7 +13,8 @@ block content
 					h4 Job - #{emp.job}
 					if admin
 						h4 Admin - #{admin.name}
-					h4 Hire-Date - #{emp.hiredate.toDateString()}
+					if emp.hiredate
+						h4 Hire-Date - #{emp.hiredate.toDateString()}
 					h4 Job - #{emp.job}
 					h4 Email - #{emp.email} 	
 					a.btn1(href='/users/payroll/'+emp._id) Show payroll and working hours

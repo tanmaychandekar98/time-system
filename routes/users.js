@@ -75,6 +75,8 @@ router.post('/find_emp', function(req,res){
 router.post('/intime/:id', function(req,res){
     User.findById(req.params.id , function(err,emp){
         if(err){res.send(err);}
+        else if(!emp){
+        }
         else{
             var intime= new Time();
             intime.eid = emp._id;
@@ -82,11 +84,17 @@ router.post('/intime/:id', function(req,res){
             emp.in = true;
             emp.intime_id = intime._id;
             emp.intime = intime.intime;
-            emp.save();
-            intime.save(function(err){
+            emp.save(function(err){
                 if(err){res.send(err);}
-                else {
-                    res.redirect('/users/'+emp._id);
+                else{
+                    intime.save(function(err){
+                        console.log(intime+"lomm");
+                        console.log(emp+"lomm");
+                        if(err){res.send(err);}
+                        else {
+                            res.redirect('/users/'+emp._id);
+                        }
+                    });
                 }
             });
         }
