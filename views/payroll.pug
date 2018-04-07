@@ -4,7 +4,7 @@ block content
 	if user
 		//Scripts to find specific arrays
 		-
-			if (times[0]!=null){
+			if (times[0]!=null && times[0].complete){
 				//Algo to find rate for an employee
 				var jobs = [
 					{job:"Project Manager",rate:500},
@@ -54,8 +54,8 @@ block content
 						}
 					}
 				}
-			}
 				montharray.push(arr);
+			}
 				const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
 			
 			
