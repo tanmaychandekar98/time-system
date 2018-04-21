@@ -13,7 +13,7 @@ block content
 					{job:"Assistant",rate:300},
 					{job:"Consultant",rate:600}
 				]
-				let obj = jobs.find(o => o.job == emp.job);
+				var obj = jobs.find(o => o.job == emp.job);
 				var rate = obj.rate;
 				if(!rate)
 					rate = 400; //default rate if no job is provided

@@ -1,17 +1,18 @@
+//Require mongoose
+// Mongoose is a module to communicate with the mongodb database
 var mongoose = require('mongoose');
-//var ObjectId = mongoose.Schema.Types.ObjectId;
 
 
 //TimeStamp Schema
 var timeSchema = mongoose.Schema({
-    eid:{
+    eid:{              // eid stored as string
     	type:String,
     	required:true
     },
-    intime:{
+    intime:{           // intime stored as date object
         type:Date
     },
-    outtime:{
+    outtime:{          //outtime stored as date object
         type:Date
     },
     duration:{  //duration in hrs
@@ -22,12 +23,12 @@ var timeSchema = mongoose.Schema({
         required:true,
         default:false
     },
-    category:{
+    category:{       //type of timestamp - "regular" for in/out punch ; "leave" for leaves
         type:String
     },
-    leavetype:{
+    leavetype:{      //If the timestamp is a leave , then "sick","casual","training" otherwise null
         type:String
     }
-},{collection:'timestamp'});
+},{collection:'timestamp'});  // schema for timestamp collection in the database
 
 var Time = module.exports =mongoose.model('Time',timeSchema);

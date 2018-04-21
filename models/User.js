@@ -1,39 +1,40 @@
+//Require mongoose
+// Mongoose is a module to communicate with the mongodb database
 var mongoose = require('mongoose');
-//var ObjectId = mongoose.Schema.Types.ObjectId;
 
 
 //User Schema
 var userSchema = mongoose.Schema({
-	eid:{
+	eid:{               // eid stored as string
 		type:String,
 		required:true,
 		unique:true
 	},
-	name:{
+	name:{               // name stored as string
 		type:String,
 		required:true
 	},
-	job:{
+	job:{               // job stored as string
 		type:String,
 		required:true
 	},
-	password:{
+	password:{          // password stored as string
 		type:String
 	},
-	email:{
+	email:{             // email stored as string
 		type:String
 	},
-	hiredate:{
+	hiredate:{          //hiredate stored as date obj.
 		type:Date
 	},
-	company:{
+	company:{           //company stored as string
 		type:String
 	},
 	admin:{  //ObjectId for employee / 'admin' for admin
 		type:String,
 		required:true
 	},
-	in:{
+	in:{            // 'true' if emp is working else 'false'
 		type:Boolean,
 		required:true,
 		default:false
@@ -59,6 +60,6 @@ var userSchema = mongoose.Schema({
 		required:true,
 		default:0
 	}
-},{collection:'users'});
+},{collection:'users'});  // schema for users collection in the database
 
 var User = module.exports =mongoose.model('User',userSchema);
