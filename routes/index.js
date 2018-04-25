@@ -55,6 +55,13 @@ router.get('/login',function(req,res){
 });
 
 
+router.get('/delEmp/:id' , function(req,res){
+	User.remove({_id:req.params.id} ,function(err,emp){
+		console.log("1 emp deleted");
+		res.send("<h2>1 Employee deleted<hr><a href='/admin'>Go back</a></h2>");
+	});
+});
+
 //---------Post requests----------
 
 //Function to register a new admin/company to the database

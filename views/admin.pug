@@ -3,6 +3,9 @@ extends layout
 block content
 	#admin-page
 		.container
+
+			// If user is logged in
+			
 			if user
 				if user.admin=="admin"
 					.row
@@ -33,6 +36,9 @@ block content
 							br
 						hr
 						.row
+
+							//table to show employee list with details
+
 							.table-responsive
 								table.table.col-sm-6
 									thead
@@ -49,6 +55,8 @@ block content
 												Hire Date
 											th.
 												Email
+											th.
+
 									tbody
 										each emp in list
 											tr
@@ -68,4 +76,6 @@ block content
 														-
 												td.
 													#{emp.email}
+												td
+													a.btn.btn-danger.btn-xs(href='/delEmp/'+emp._id) Delete
 							p *Click on an employee id to view employee information

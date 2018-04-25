@@ -75,11 +75,13 @@ router.post('/find_emp', function(req,res){
 			if (err){
 				res.send("<h2>"+err.message+"<hr><a href='/admin'>Go back</a></h2>")
 			}
-			else
+			else if(emp)
 				res.redirect('/users/'+emp._id);  //Redirect to the employee page
-		});
+            else
+                res.send("<h2>Input ID not present<hr><a href='/admin'>Go back</a></h2>");
+        });
 	}else
-		res.send("<h2>ID field is empty<hr><a href='/admin'>Go back</a></h2>")
+		res.send("<h2>ID field is empty<hr><a href='/admin'>Go back</a></h2>");
 });
 
 
@@ -147,37 +149,42 @@ router.post('/outtime/:id', function(req,res){
 //Input 'selleave' contains the reason for leave
 //Input 'ldate' contains the day of leave
 router.post('/leave/:id' ,function(req,res){
+    var ldate = new Date(req.body.ldate);
     User.findById(req.params.id ,function(err,user){  //find the user
         if (err){res.send(err+"1");}
         else{
-            var time = new Time();  // Create a new timestamp instance
-            var reason = req.body.selleave;
-            if(reason=="Sick" && user.sickleaves <10){  //change attr. acc. to the leave reason
-                time.duration = 5;
-                user.sickleaves+=1;
-            }
-            else if(reason=="Casual" && user.casualleaves < 10){  //change attr. acc. to the leave reason
-                time.duration = 3;
-                user.casualleaves += 1;
-            }
-            else if (reason=="Training" &&user.trainingleaves < 10){  //change attr. acc. to the leave reason
-                time.duration = 7;
-                user.trainingleaves += 1;
-            } else {
-                time.duration = 0;
-            }
-            time.eid = user._id;
-            time.category = "leave";  //set the category of the timestamp to 'leave'
-            time.leavetype = reason;
-            time.intime = new Date(req.body.ldate);  //set the time to given input date
-            time.complete = true;
-            time.save(function(err){
-                if (err) res.send(err);
-                else{
-                    user.save();  // save the user
-                    res.redirect('/users/'+user._id);  //redirect to the employee page
+            if(ldate > Date.now()){
+                var time = new Time();  // Create a new timestamp instance
+                var reason = req.body.selleave;
+                if(reason=="Sick" && user.sickleaves <10){  //change attr. acc. to the leave reason
+                    time.duration = 5;
+                    user.sickleaves+=1;
                 }
-            });
+                else if(reason=="Casual" && user.casualleaves < 10){  //change attr. acc. to the leave reason
+                    time.duration = 3;
+                    user.casualleaves += 1;
+                }
+                else if (reason=="Training" &&user.trainingleaves < 10){  //change attr. acc. to the leave reason
+                    time.duration = 7;
+                    user.trainingleaves += 1;
+                } else {
+                    time.duration = 0;
+                }
+                time.eid = user._id;
+                time.category = "leave";  //set the category of the timestamp to 'leave'
+                time.leavetype = reason;
+                time.intime = ldate;  //set the time to given input date
+                time.complete = true;
+                time.save(function(err){
+                    if (err) res.send("<h2>Invalid leave Request<hr><a href='/users/"+user._id+"''>Go back</a></h2>");
+                    else{
+                        user.save();  // save the user
+                        res.redirect('/users/'+user._id);  //redirect to the employee page
+                    }
+                });
+            }else{
+                res.send("<h2>Selected date is invalid for leave<hr><a href='/users/"+user._id+"''>Go back</a></h2>");
+            }
         }
     });
 });

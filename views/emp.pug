@@ -4,10 +4,10 @@ block content
 	#emp-page
 		if emp
 			.container
-				.box2.col-sm-5.text-center
+				.box2.text-center(class=(user.name==emp.name)?"col-sm-5":"col-sm-offset-3 col-sm-6")
 					h1 Employee
 					hr
-					h2 #{emp.name}
+					h2#na #{emp.name}
 					hr
 					h4 Company - #{emp.company}
 					h4 Job - #{emp.job}
@@ -31,7 +31,7 @@ block content
 									button.btn1.btn-punch(type='submit') Out-Punch
 							h4(style="position:absolute;bottom:50px;") You punched in at #{user.intime}
 				else
-					.col-sm-5.col-sm-offset-2
+					.col-sm-8.col-sm-offset-3
 						h3 Check employees' payroll by clicking the button
 			
 		if user

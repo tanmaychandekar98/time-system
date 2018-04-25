@@ -3,20 +3,31 @@ extends layout
 block content
 	#home
 		.container
+
+
+			// Container for front page heading and short info
+
 			div(class=user?"":"col-sm-6")
 				h1= title
 				h3 Welcome to #{title}
 				hr
-				ul
-					li Track working hours
-					li Get salary info
-					li Apply for leaves
+				.col-sm-6.col-sm-offset-3
+					ul
+						li Track working hours
+						li Get salary info
+						li Apply for leaves
 				if user
 					h3 Welcome #{user.name}
 					if user.admin=="admin"
 						a.btn1(href='/admin') #{user.company}
 					else
 						a.btn1(href='/users/'+user._id) #{user.name}
+
+
+
+
+			// Sign-in box Renders if no user is logged in
+			
 			if !user
 				.col-sm-5.col-sm-offset-1.box2(style="padding-top:25px;")
 					h1 Login to continue
@@ -28,7 +39,7 @@ block content
 						.form-group
 							.col-sm-6.col-sm-offset-3
 								input.form-control(name="password" ,type="password",placeholder="Password" required)
-						input.btn.btn-success(type="submit" value="Login")
+						input.btn.btn-success#submit(type="submit" value="Login")
 					hr
 					h4 Don't have an account ?
 					br
