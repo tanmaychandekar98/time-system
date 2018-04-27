@@ -1,0 +1,50 @@
+FF..F
+
+Failures:
+
+  1) Time cards Server ADMIN-SIGNUP -  Sign-up valid user Directi
+   Message:
+     Expected 200 to be 302.
+   Stacktrace:
+     Error: Expected 200 to be 302.
+    at Request._callback (/home/tanmay/Desktop/node_projects/time-system/spec/admin_signup_spec.js:32:39)
+    at Request.self.callback (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:186:22)
+    at emitTwo (events.js:125:13)
+    at Request.emit (events.js:213:7)
+    at Request.<anonymous> (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:1163:10)
+    at emitOne (events.js:115:13)
+    at Request.emit (events.js:210:7)
+    at IncomingMessage.<anonymous> (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:1085:12)
+
+  2) Time cards Server ADMIN-SIGNUP -  Sign-up valid user Amazon
+   Message:
+     Expected 200 to be 302.
+   Stacktrace:
+     Error: Expected 200 to be 302.
+    at Request._callback (/home/tanmay/Desktop/node_projects/time-system/spec/admin_signup_spec.js:32:39)
+    at Request.self.callback (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:186:22)
+    at emitTwo (events.js:125:13)
+    at Request.emit (events.js:213:7)
+    at Request.<anonymous> (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:1163:10)
+    at emitOne (events.js:115:13)
+    at Request.emit (events.js:210:7)
+    at IncomingMessage.<anonymous> (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:1085:12)
+
+  3) Time cards Server LOGIN -  logs in invalid user
+   Message:
+     Expected 401 to be 302.
+   Stacktrace:
+     Error: Expected 401 to be 302.
+    at Request._callback (/home/tanmay/Desktop/node_projects/time-system/spec/login_spec.js:52:37)
+    at Request.self.callback (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:186:22)
+    at emitTwo (events.js:125:13)
+    at Request.emit (events.js:213:7)
+    at Request.<anonymous> (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:1163:10)
+    at emitOne (events.js:115:13)
+    at Request.emit (events.js:210:7)
+    at IncomingMessage.<anonymous> (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:1085:12)
+
+Finished in 0.443 seconds
+5 tests, 5 assertions, 3 failures, 0 skipped
+
+
