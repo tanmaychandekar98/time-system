@@ -17,7 +17,7 @@ block content
 						h4 Hire-Date - #{emp.hiredate.toDateString()}
 					h4 Job - #{emp.job}
 					h4 Email - #{emp.email} 	
-					a.btn1(href='/users/payroll/'+emp._id) Show payroll and working hours
+					a.btn1.payroll(href='/users/payroll/'+emp._id) Show payroll and working hours
 				if user.name==emp.name
 					.box2.col-sm-5.col-sm-offset-2.text-center
 						h2#time
