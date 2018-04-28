@@ -26,6 +26,12 @@ router.get('/docs', function(req, res, next) {
 });
 
 
+//GET changePWd page
+router.get('/pwd', function(req, res, next) {
+  res.render('pwd');     //Renders the docs page
+});
+
+
 //------sign-up routes----------
 
 //Get the admin(company) sign-up page
@@ -111,6 +117,24 @@ router.post('/register/emp', function(req,res){
 		}
 		else{
 			res.send("<h1>Invalid Key - 2</h1><hr><a href='/signup/emp'>Go back</a></h2>");
+		}
+	});
+});
+
+//Change_Password Function
+router.post('/changePwd/:id' ,function(req,res){
+	User.findById(req.params.id ,function(err,user){
+		if(err) res.send(err);
+		else{
+			user.password=req.body.password;
+			user.save(function(err){
+				if(err){
+					res.send("<h2>"+err.message+"<hr><a href='/'>Go to Home Page</a></h2>")
+				}else if(user.admin=="admin"){
+				}else{
+					res.send("<h2>Password changed successfully<hr><a href='/users/"+user._id+"'>Go back</a></h2>");
+				}
+			});
 		}
 	});
 });

@@ -19,19 +19,19 @@ block content
 								span.key #{user._id}
 							p Distribute this key to your employees to give access to this organization
 					.row
-						hr.col-sm-8
+						hr
 					br
 					br
 					if !list
 						.row
-							a.btn1(href='/users/list/'+user._id) Show employees list
+							a.btn.btn-primary(href='/users/list/'+user._id) Show employees list
 					if list
 						.row
 							form.form-inline.find-emp(method='POST' action="/users/find_emp")
 								.form-group
-									label(for="eid") ID:
+									label(for="eid") Search ID:
 									input.form-control(name="eid" ,type="text" required)
-								button.btn1(type="submit") View profile
+								button.btn.btn-primary(type="submit") View profile
 							br
 							br
 						hr

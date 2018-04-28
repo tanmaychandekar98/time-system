@@ -65,11 +65,14 @@ block content
 			.col-sm-6
 				a(style="font-size:30px;" href='/users/'+emp._id) #{emp.name}
 				h3 Job - #{emp.job}
-			.col-sm-6
+				p #{emp.job} : #{rate} Rs. per hour
+			.col-sm-2.col-sm-offset-4.box1
 				span Working status : 
 				span.fa.fa-check-circle(style=emp.intime?"color:green;":"")
+			.row
 			br
-			p #{emp.job} : #{rate} Rs. per hour
+			br
+			
 			br
 			hr
 			br
