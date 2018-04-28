@@ -78,7 +78,7 @@ router.post('/find_emp', function(req,res){
 			else if(emp)
 				res.redirect('/users/'+emp._id);  //Redirect to the employee page
             else
-                res.send("<h2>Input ID not present<hr><a href='/admin'>Go back</a></h2>");
+                res.status(404).send("<h2>Input ID not present<hr><a href='/admin'>Go back</a></h2>");
         });
 	}else
 		res.send("<h2>ID field is empty<hr><a href='/admin'>Go back</a></h2>");

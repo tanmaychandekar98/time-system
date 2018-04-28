@@ -28,16 +28,6 @@ describe("Time cards Server", function() {
       });
     });
 
-   
-
-    /*it("returns Hello World", function(done) {
-      request.get(base_url, function(error, response, body) {
-        expect(body).toBe("Hello World");
-        //console.log("\n\n\n\n"+JSON.stringify(response)+"\n\n\n\n\n");
-        //helloWorld.closeServer();
-        done();
-      });
-    });*/
 
     it("logs in valid user", function(done) {
       request.post(params[0], function(error, response, body) {

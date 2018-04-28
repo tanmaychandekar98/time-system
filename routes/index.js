@@ -92,11 +92,15 @@ router.post('/register/admin', function(req,res){
 
 //Function to register a new employee to the database
 router.post('/register/emp', function(req,res){
+	var hdate = new Date(req.body.hdate);
 	User.findById(req.body.key,function(err,admin){  // Find the company if it exists by the input key
 		if (err) { res.send ("<h1>Invalid Key</h1><hr><a href='/signup/emp'>Go back</a></h2>"); }
 		else if(!admin){
-			res.send("<h1>Invalid Key</h1><hr><a href='/signup/emp'>Go back</a></h2>");
-		}else if(admin.admin=="admin"){  // If the company exists for the key in the database
+			res.send("<h1>Invalid Key or hire-date</h1><hr><a href='/signup/emp'>Go back</a></h2>");
+		}else if(hdate < Date.now()){
+			res.send("<h1>Invalid Hire-Date</h1><hr><a href='/signup/emp'>Go back</a></h2>");
+		}
+		else if(admin.admin=="admin"){  // If the company exists for the key in the database
 			var user= new User();  //create a new user instance
 			user.name=req.body.name;
 			user.job=req.body.job;            // Assign the

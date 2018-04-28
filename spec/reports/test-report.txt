@@ -1,4 +1,4 @@
-FF..F
+FFF..F..
 
 Failures:
 
@@ -7,7 +7,7 @@ Failures:
      Expected 200 to be 302.
    Stacktrace:
      Error: Expected 200 to be 302.
-    at Request._callback (/home/tanmay/Desktop/node_projects/time-system/spec/admin_signup_spec.js:32:39)
+    at Request._callback (/home/tanmay/Desktop/node_projects/time-system/spec/admin_signup_spec.js:31:39)
     at Request.self.callback (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:186:22)
     at emitTwo (events.js:125:13)
     at Request.emit (events.js:213:7)
@@ -21,7 +21,7 @@ Failures:
      Expected 200 to be 302.
    Stacktrace:
      Error: Expected 200 to be 302.
-    at Request._callback (/home/tanmay/Desktop/node_projects/time-system/spec/admin_signup_spec.js:32:39)
+    at Request._callback (/home/tanmay/Desktop/node_projects/time-system/spec/admin_signup_spec.js:31:39)
     at Request.self.callback (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:186:22)
     at emitTwo (events.js:125:13)
     at Request.emit (events.js:213:7)
@@ -30,12 +30,26 @@ Failures:
     at Request.emit (events.js:210:7)
     at IncomingMessage.<anonymous> (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:1085:12)
 
-  3) Time cards Server LOGIN -  logs in invalid user
+  3) Time cards Server EMPLOYEE-SIGNUP -  Sign-up valid user Stuart
+   Message:
+     Expected 200 to be 302.
+   Stacktrace:
+     Error: Expected 200 to be 302.
+    at Request._callback (/home/tanmay/Desktop/node_projects/time-system/spec/emp_signup_spec.js:25:39)
+    at Request.self.callback (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:186:22)
+    at emitTwo (events.js:125:13)
+    at Request.emit (events.js:213:7)
+    at Request.<anonymous> (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:1163:10)
+    at emitOne (events.js:115:13)
+    at Request.emit (events.js:210:7)
+    at IncomingMessage.<anonymous> (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:1085:12)
+
+  4) Time cards Server LOGIN -  logs in invalid user
    Message:
      Expected 401 to be 302.
    Stacktrace:
      Error: Expected 401 to be 302.
-    at Request._callback (/home/tanmay/Desktop/node_projects/time-system/spec/login_spec.js:52:37)
+    at Request._callback (/home/tanmay/Desktop/node_projects/time-system/spec/login_spec.js:42:37)
     at Request.self.callback (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:186:22)
     at emitTwo (events.js:125:13)
     at Request.emit (events.js:213:7)
@@ -44,7 +58,7 @@ Failures:
     at Request.emit (events.js:210:7)
     at IncomingMessage.<anonymous> (/home/tanmay/Desktop/node_projects/time-system/node_modules/request/request.js:1085:12)
 
-Finished in 0.443 seconds
-5 tests, 5 assertions, 3 failures, 0 skipped
+Finished in 0.481 seconds
+8 tests, 8 assertions, 4 failures, 0 skipped
 
 
