@@ -175,6 +175,7 @@ router.post('/leave/:id' ,function(req,res){
                 time.leavetype = reason;
                 time.intime = ldate;  //set the time to given input date
                 time.complete = true;
+                time.outtime=null;
                 time.save(function(err){
                     if (err) res.send("<h2>Invalid leave Request<hr><a href='/users/"+user._id+"''>Go back</a></h2>");
                     else{

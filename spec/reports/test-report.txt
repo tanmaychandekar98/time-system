@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 FF..F
 
 Failures:
@@ -48,3 +49,6 @@ Finished in 0.443 seconds
 5 tests, 5 assertions, 3 failures, 0 skipped
 
 
+=======
+.
+>>>>>>> 45e731cada210d842442abf3da11f05b2cf57bfc

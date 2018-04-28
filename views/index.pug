@@ -9,13 +9,12 @@ block content
 
 			div(class=user?"":"col-sm-6")
 				h1= title
-				h3 Welcome to #{title}
+				h1 Welcome to #{title}
 				hr
-				.col-sm-6.col-sm-offset-3
-					ul
-						li Track working hours
-						li Get salary info
-						li Apply for leaves
+				ul
+					li Time Tracking
+					li Employee Schedule
+					li Payroll Reporting
 				if user
 					h3 Welcome #{user.name}
 					if user.admin=="admin"
@@ -50,4 +49,5 @@ block content
 					br
 					br
 					p *Company key required to register as an employee
-								
+
+                 

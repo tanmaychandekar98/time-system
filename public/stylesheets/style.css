@@ -5,13 +5,13 @@ styling of classes / elements
 
 body {
 	padding: 70px 0px;
-	background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/bg.jpg");
+	background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/bpg.jpg");
 	background-size: cover;
 }
 
 .navbar {
 	background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-	opacity:0.8;
+	opacity:1;
 }
 
 * {
@@ -20,7 +20,10 @@ body {
 
 a {
 	text-decoration:none; 
-	cursor:pointer;  
+	cursor:pointer; 
+	font-size: 20px; 
+	font-family: "Times New Roman";
+	font-weight: bold;
 }
 
 option {
@@ -29,6 +32,8 @@ option {
 
 #home {
 	text-align: center;
+	font-size: 25px;
+	font-family: "Times New Roman";
 }
 
 .table-responsive {
@@ -97,4 +102,12 @@ text-shadow: rgb(255, 255, 255) 0px 1px 0px;
 	top: 50%;
 	bottom: 50%;
 	transform: translate(-50%,-50%);
+}
+
+.blog{
+	font-size: 19px;
+	display: inline;
+	padding: 20px 20px 20px 20px;
+	text-align: center;
+	font-family: "Sans-serif";
 }
