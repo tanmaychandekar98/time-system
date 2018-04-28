@@ -11,16 +11,24 @@ body {
 
 .navbar {
 	background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-	opacity:0.8;
+	opacity:1;
 }
 
 * {
 	color: white;
 }
 
+ul {
+  list-style-type: none;
+  font-size: 20px;
+}
+
 a {
 	text-decoration:none; 
-	cursor:pointer;  
+	cursor:pointer; 
+	font-size: 15px; 
+	font-family: "Times New Roman";
+	font-weight: bold;
 }
 
 option {
@@ -29,6 +37,7 @@ option {
 
 #home {
 	text-align: center;
+	font-family: "Times New Roman";
 }
 
 .table-responsive {
@@ -92,9 +101,17 @@ text-shadow: rgb(255, 255, 255) 0px 1px 0px;
 .btn-punch {
 	height: 150px;
 	width: 150px;
-	font-size: 22px;
+	font-size: 34px;
 	position: absolute;
 	top: 50%;
 	bottom: 50%;
 	transform: translate(-50%,-50%);
+}
+
+.blog{
+	font-size: 14px;
+	display: inline;
+	padding: 20px 20px 20px 20px;
+	text-align: center;
+	font-family: "Sans-serif";
 }

@@ -62,14 +62,13 @@ block content
 			
 			
 		.container
-			.row
-				h2
-					a(href='/users/'+emp._id) #{emp.name}
+			.col-sm-6
+				a(style="font-size:30px;" href='/users/'+emp._id) #{emp.name}
 				h3 Job - #{emp.job}
-			.row
-				if emp.intime
-					p Currently in work
-			h3 Your working slots : 
+			.col-sm-6
+				span Working status : 
+				span.fa.fa-check-circle(style=emp.intime?"color:green;":"")
+			br
 			p #{emp.job} : #{rate} Rs. per hour
 			br
 			hr
@@ -84,7 +83,7 @@ block content
 						a(data-toggle="tab" href="#monthwise") Month wise
 					li
 						a(data-toggle="tab" href="#leave") Leaves
-				.tab-content
+				.tab-content#pic
 					#detail.tab-pane.fade.in.active
 						.table-responsive
 							table.table.col-sm-6
@@ -223,8 +222,24 @@ block content
 												#{leave.duration * rate}
 			.row
 				br
-			.row
+			.row#totalpay
 				h2 Total pay - Rs.  #{sum.toFixed(2)}
-	
+			.row
+				button.btn.btn-primary(onclick="pic();") Download Report
+	script.
+		var pic = function download(){
+		    var a = document.body.appendChild(
+		        document.createElement("a")
+		    );
+		    a.download = "#{emp.name}-salary-report.html";
+		    var head = "<head> <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'> </head><h1>#{emp.name}<hr>";
+		    var a1 = "<h3>Detail report</h3>"+document.getElementById("detail").innerHTML+"<hr>";
+		    var a2 = "<h3>Daywise report</h3>"+document.getElementById("daywise").innerHTML+"<hr>";
+		    var a3 = "<h3>Monthly report</h3>"+document.getElementById("monthwise").innerHTML+"<hr>";
+		    var a4 = "<h3>Applied Leaves</h3>"+document.getElementById("leave").innerHTML+"<hr>";
+		    var a5 = document.getElementById("totalpay").innerHTML+"<hr>";
+		    a.href = "data:text/html,"+head + a1+a2+a3+a4+a5; // Grab the HTML
+		    a.click(); // Trigger a click on the element
+		}
 			
 	

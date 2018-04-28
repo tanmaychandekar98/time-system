@@ -11,17 +11,18 @@ block content
 				h1= title
 				h3 Welcome to #{title}
 				hr
-				.col-sm-6.col-sm-offset-3
-					ul
-						li Track working hours
-						li Get salary info
-						li Apply for leaves
+				ul.btn.btn-primary
+					li TRACK WORKING HOURS
+					li GET SALARY INFO
+					li APPLY FOR LEAVES
+				hr
+				h4.box1(style="color:lightgray;") Time card clocks system is a web-based software which is developed for the use of businesses, corporate houses, enterprises, employers of private firms and anybody who wants to keep a track of the working hour of members of one's organizations . This software provides solutions to keep automated tracked schedules of their employees' working hours and a record of their monthly payroll.
 				if user
 					h3 Welcome #{user.name}
 					if user.admin=="admin"
-						a.btn1(href='/admin') #{user.company}
+						a.btn.btn-primary(href='/admin') #{user.company} Admin Panel
 					else
-						a.btn1(href='/users/'+user._id) #{user.name}
+						a.btn.btn-primary(href='/users/'+user._id) #{user.name}
 
 
 

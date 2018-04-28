@@ -28,7 +28,7 @@ html
 						if user
 							if user.admin=="admin"
 								li
-									a(href='/admin') #{user.name}
+									a(href='/admin') Admin Panel
 							else
 								li
 									a(href='/users/'+user._id) #{user.name}
