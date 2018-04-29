@@ -70,12 +70,13 @@ router.get('/payroll/:id' ,function(req,res){
 //Function to search the employee by id (provided on the admin page)
 // input 'eid' contains the employee id to search
 router.post('/find_emp', function(req,res){
-	if(req.body.eid){  
+	if(req.body.eid){
+        //console.log(req.user);
 		User.findOne({eid:req.body.eid}, function(err,emp){  //Find the emp with the given eid
 			if (err){
 				res.send("<h2>"+err.message+"<hr><a href='/admin'>Go back</a></h2>")
 			}
-			else if(emp)
+			else if(emp && emp.admin==req.user._id)
 				res.redirect('/users/'+emp._id);  //Redirect to the employee page
             else
                 res.status(404).send("<h2>Input ID not present<hr><a href='/admin'>Go back</a></h2>");
