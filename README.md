@@ -4,7 +4,8 @@ A realtime application for companies to track their employees' working hours.
 # Run your app
 Ensure that NodeJs and Mongodb is installed on your system and mongodb server is running.
 To host your app run -
-```npm start
+```
+npm start
 ```
 
 # To contribute
