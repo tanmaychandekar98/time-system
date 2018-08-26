@@ -1,6 +1,14 @@
-# time-system
+# employee-time-system
 A realtime application for companies to track their employees' working hours.
 
+# Run your app
+Ensure that NodeJs and Mongodb is installed on your system and mongodb server is running.
+To host your app run -
+```npm start
+```
+
+# To contribute
+Clone the repo
 
 1. Open time-system folder
 2. Open terminal here
@@ -14,7 +22,7 @@ A realtime application for companies to track their employees' working hours.
 ```
 git checkout -b newfeature
 ```
-5. Make changes in the files and stage them\
+5. Make changes in the files and stage them
 ```
 git add *
 git commit -m "Commit Message"
